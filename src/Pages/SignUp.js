@@ -3,18 +3,53 @@ import { Link } from "react-router-dom";
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { BiUser } from 'react-icons/bi';
+import { useContext } from 'react';
+import { AuthContext } from '../Contexts/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
+  const {createUser,googleSignIn}=useContext(AuthContext)
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.username.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    
+    //create user
+    createUser(email, password)
+      .then(result => {
+        toast.success('user created successfully ')
+        console.log(result.user)
+      })
+      .catch(err => {
+        toast.error(err.message)
+      console.error(err)
+    })
+    
+  }
+
+  // google sign in
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then(result => {
+        toast.success('successfully logged in')
+      console.log(result.user);
+      })
+      .catch(err => {
+        toast.error(err.message)
+        console.log(err)
+    })
+  }
   return (
     <div className="w-full max-w-md p-8 space-y-3 shadow rounded my-20 dark:bg-gray-900 dark:text-gray-100 border border-pink-200 mx-auto">
       <h1 className="text-3xl pb-4 font-bold text-center">Sign Up</h1>
       <form
-        novalidate=""
-        action=""
+        onSubmit={handleFormSubmit}
         className="space-y-6 ng-untouched ng-pristine ng-valid"
       >
         <div className="space-y-1 text-sm">
-          <label for="username" className="block dark:text-gray-400">
+          <label htmlFor="username" className="block dark:text-gray-400">
             Username
           </label>
           <div className="flex justify-center items-center border-b-2">
@@ -29,7 +64,7 @@ const SignUp = () => {
          </div>
         </div>
         <div className="space-y-1 text-sm">
-          <label for="username" className="block dark:text-gray-400">
+          <label htmlFor="email" className="block dark:text-gray-400">
             Your Email
           </label>
           <div className="flex justify-center items-center border-b-2">
@@ -44,7 +79,7 @@ const SignUp = () => {
          </div>
         </div>
         <div className="space-y-1 text-sm">
-          <label for="password" className="block dark:text-gray-400">
+          <label htmlFor="password" className="block dark:text-gray-400">
             Password
           </label>
           <div className="flex justify-center items-center border-b-2">
@@ -58,14 +93,9 @@ const SignUp = () => {
           />
          </div>
         </div>
-        <Link
-          to="/signup"
-          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
-          aria-label="Sign up"
-          title="Sign up"
-        >
-          Sign up
-        </Link>
+        
+          <input type="submit" className='w-full h-12 px-6 font-medium text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none cursor-pointer' value="Sign up " />
+        
       </form>
       <div className="flex items-center pt-4 space-x-1">
       <div className="flex items-center w-full my-4">
@@ -76,7 +106,7 @@ const SignUp = () => {
       </div>
           
       <div className="flex justify-center space-x-4">
-        <button aria-label="Log in with Google" className="p-3 rounded-sm">
+        <button onClick={handleGoogleSignIn} aria-label="Log in with Google" className="p-3 rounded-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"

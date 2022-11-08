@@ -3,9 +3,23 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import "../Styles/Nav.css";
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout } = useContext(AuthContext)
+  
+  //logout
+  const handleLogOut = () => {
+    logout()
+      .then(() => { })
+      .catch(err => {
+        toast.error(err.message)
+        console.error(err)
+      })
+  }
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
@@ -65,16 +79,31 @@ const Nav = () => {
               Blog
             </NavLink>
           </li>
-          <li>
+          {
+            user?.uid ?
+            <li onClick={handleLogOut}>
             <Link
               to="/signup"
               className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
               aria-label="Sign up"
               title="Sign up"
             >
-              Sign up
+              Sign Out
             </Link>
-          </li>
+              </li>
+              :
+              <li>
+              <Link
+                to="/signup"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Sign In
+              </Link>
+            </li>    
+          }
+          
         </ul>
         <div className="lg:hidden z-40">
           <button
@@ -176,16 +205,30 @@ const Nav = () => {
                         Blog
                       </NavLink>
                     </li>
-                    <li>
-                      <Link
-                        to="/signup"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
-                      </Link>
-                    </li>
+                    {
+            user?.uid ?
+            <li onClick={handleLogOut}>
+            <Link
+              to="/signup"
+              className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
+              aria-label="Sign up"
+              title="Sign up"
+            >
+              Sign Out
+            </Link>
+              </li>
+              :
+              <li>
+              <Link
+                to="/signup"
+                className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Sign In
+              </Link>
+            </li>    
+          }
                   </ul>
                 </nav>
               </div>
