@@ -5,9 +5,11 @@ import { router } from './Routes/Router';
 
 function App() {
   return (
-    <RouterProvider router= {router}>
+    <div style={{maxWidth:"1400px", margin:"auto"}} className='border border-emerald-800'>
+      <RouterProvider router= {router}>
      
-    </RouterProvider>
+     </RouterProvider>
+    </div>
   );
 }
 
