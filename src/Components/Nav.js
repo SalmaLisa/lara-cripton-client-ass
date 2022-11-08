@@ -1,43 +1,44 @@
 import { useState } from "react";
-import React from 'react';
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from '../assets/logo.jpg'
-import '../Styles/Nav.css'
+import logo from "../assets/logo.jpg";
+import "../Styles/Nav.css";
 
 const Nav = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	return (
-		<div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  return (
+    <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
         <Link
-          to='/'
+          to="/"
           aria-label="laraCripton"
           title="laraCripton"
           className="inline-flex items-center"
         >
-          
-					<img className="w-12" src={logo} alt="" />
-					<div>
-					<span className="ml-2 text-xl font-bold tracking-wide text-pink-600 uppercase block">
-            Lara Cripton
-					</span>
-					<span className="text-gray-500 ml-2">Life Coach</span>
-				 </div>
+          <img className="w-12" src={logo} alt="" />
+          <div>
+            <span className="ml-2 text-xl font-bold tracking-wide text-pink-600 uppercase block">
+              Lara Cripton
+            </span>
+            <span className="text-gray-500 ml-2">Life Coach</span>
+          </div>
         </Link>
         <ul className="flex items-center hidden space-x-8 lg:flex">
           <li>
             <NavLink
-              to='/home'
+              to="/home"
               aria-label="home"
               title="home"
-              className={`font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400 ${(isActive)=>isActive? 'active':'undefined'}`}
+              className={`font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400 ${(
+                isActive
+              ) => (isActive ? "active" : "undefined")}`}
             >
               Home
             </NavLink>
           </li>
           <li>
             <NavLink
-              to='/services'
+              to="/services"
               aria-label="services"
               title=""
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -47,7 +48,6 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              
               aria-label="Product pricing"
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -57,7 +57,7 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              to='/blog'
+              to="/blog"
               aria-label="About us"
               title="About us"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -67,8 +67,8 @@ const Nav = () => {
           </li>
           <li>
             <Link
-              
-              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-pink-500 hover:bg-pink-600 focus:shadow-outline focus:outline-none"
+              to="/signup"
+              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
               aria-label="Sign up"
               title="Sign up"
             >
@@ -103,21 +103,19 @@ const Nav = () => {
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-									<Link
-          
-          aria-label="laraCripton"
-          title="laraCripton"
-          className="inline-flex items-center"
-        >
-          
-					<img className="w-12" src={logo} alt="" />
-					<div>
-					<span className="ml-2 text-xl font-bold tracking-wide text-pink-600 uppercase block">
-            Lara Cripton
-					</span>
-					<span className="text-gray-500 ml-2">Life Coach</span>
-				 </div>
-        </Link>
+                    <Link
+                      aria-label="laraCripton"
+                      title="laraCripton"
+                      className="inline-flex items-center"
+                    >
+                      <img className="w-12" src={logo} alt="" />
+                      <div>
+                        <span className="ml-2 text-xl font-bold tracking-wide text-pink-600 uppercase block">
+                          Lara Cripton
+                        </span>
+                        <span className="text-gray-500 ml-2">Life Coach</span>
+                      </div>
+                    </Link>
                   </div>
                   <div>
                     <button
@@ -139,27 +137,28 @@ const Nav = () => {
                   <ul className="space-y-4 ">
                     <li>
                       <NavLink
-                        to='/home'
+                        to="/home"
                         aria-label="home"
                         title="home"
-                        className={`font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400 ${(isActive)=>isActive? 'active':'undefined'}`}
+                        className={`font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400 ${(
+                          isActive
+                        ) => (isActive ? "active" : "undefined")}`}
                       >
                         Home
                       </NavLink>
                     </li>
                     <li>
-										<NavLink
-              to='/services'
-              aria-label="services"
-              title=""
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Services
-            </NavLink>
+                      <NavLink
+                        to="/services"
+                        aria-label="services"
+                        title=""
+                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      >
+                        Services
+                      </NavLink>
                     </li>
                     <li>
                       <NavLink
-                        
                         aria-label="Product pricing"
                         title="Product pricing"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -169,7 +168,7 @@ const Nav = () => {
                     </li>
                     <li>
                       <NavLink
-                        to='/blog'
+                        to="/blog"
                         aria-label="About us"
                         title="About us"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -179,8 +178,8 @@ const Nav = () => {
                     </li>
                     <li>
                       <Link
-                        
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                        to="/signup"
+                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
                         aria-label="Sign up"
                         title="Sign up"
                       >
@@ -195,6 +194,6 @@ const Nav = () => {
         </div>
       </div>
     </div>
-	);
+  );
 };
 export default Nav;
