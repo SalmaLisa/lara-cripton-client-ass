@@ -57,12 +57,12 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              
+              to='/blog'
               aria-label="About us"
               title="About us"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              About us
+              Blog
             </NavLink>
           </li>
           <li>
@@ -76,7 +76,7 @@ const Nav = () => {
             </Link>
           </li>
         </ul>
-        <div className="lg:hidden">
+        <div className="lg:hidden z-40">
           <button
             aria-label="Open Menu"
             title="Open Menu"
@@ -136,7 +136,7 @@ const Nav = () => {
                   </div>
                 </div>
                 <nav>
-                  <ul className="space-y-4">
+                  <ul className="space-y-4 ">
                     <li>
                       <NavLink
                         to='/home'
@@ -169,12 +169,12 @@ const Nav = () => {
                     </li>
                     <li>
                       <NavLink
-                        
+                        to='/blog'
                         aria-label="About us"
                         title="About us"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        About us
+                        Blog
                       </NavLink>
                     </li>
                     <li>
