@@ -1,18 +1,21 @@
 import React from 'react';
 
-const MyReviewRow = ({ review }) => {
-  const {serviceTitle,email,photoURL,message,currentDate}=review
+
+const MyReviewRow = ({ review ,handleDelete}) => {
+  const { _id, serviceTitle, email, photoURL, message, currentDate } = review
+  
+  
   return (
     <div >
       <tr className='border'>
         <th>
-          <label title='Delete' className='p-1 bg-base-200 rounded cursor-pointer'>
+          <label onClick={()=>handleDelete(_id)} title='Delete' className='p-1 bg-base-200 rounded cursor-pointer'>
             ❌
           </label>
         </th>
-        <div className='grid grid-cols-12'>
-        <td className='col-span-4'>
-          <div className="flex items-center space-x-3">
+        <div className='grid lg:grid-cols-12'>
+        <td className='md:col-span-4 '>
+          <div className="flex flex-col md:flex-row items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-circle rounded w-32 h-32 ">
                 <img src={photoURL} alt="Avatar Tailwind CSS Component" />
