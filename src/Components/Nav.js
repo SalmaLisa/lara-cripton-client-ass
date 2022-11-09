@@ -62,11 +62,12 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
+              to='/reviews'
               aria-label="Product pricing"
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              {user?.displayName ? user.displayName:"user"}
+              Reviews
             </NavLink>
           </li>
           <li>

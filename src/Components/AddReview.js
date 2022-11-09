@@ -10,7 +10,19 @@ const AddReview = ({ service }) => {
   const [rating, setRating] = useState(1);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(rating);
+
+  const date = new Date();
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const currentDate = `${day < 10 ? "0" + day : day}/${
+    month < 10 ? "0" + month : month
+  }/${year}`;
+
+  const hours = date.getHours()
+  const minutes = date.getMinutes();
+  const currentTime = `${hours}:${minutes<10? "0"+minutes:minutes} ${hours<12 ? "AM":"PM"}`
+  
   const handleAddReview = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,12 +30,15 @@ const AddReview = ({ service }) => {
     const photoURL = form.photoURL.value;
     const message = form.message.value;
     const review = {
+      serviceTitle:service.title,
       serviceId: service._id,
       username,
       email: user?.email,
       photoURL,
       message,
       rating,
+      currentDate,
+      currentTime
     };
     if (user?.uid) {
       fetch("http://localhost:5000/reviews", {
@@ -53,8 +68,8 @@ const AddReview = ({ service }) => {
     }
   };
   return (
-    <section>
-      <h1 className="text-4xl text-blue-900 font-semibold my-12">
+    <section className="lg:w-2/3 mx-auto">
+      <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
         Inspire me by adding a review
       </h1>
       <form

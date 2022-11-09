@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AddReview from "../Components/AddReview";
+import DisplayReview from "../Components/DisplayReview";
 import PriceCard from "../Components/PriceCard";
 import Sidebar from "../Components/Sidebar";
 
@@ -50,9 +51,10 @@ const ServiceDetails = () => {
             ))}
           </div>
           <p className="text-justify text-xl">{desc2}</p>
-          <AddReview service={service}></AddReview>
         </div>
       </div>
+      <DisplayReview serviceId = {service._id}></DisplayReview>
+          <AddReview service={service}></AddReview>
     </section>
   );
 };
