@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
+import { useTitle } from '../Hooks/useTitle';
 
 
 const EditReview = () => {
@@ -47,7 +48,7 @@ const EditReview = () => {
       })
       .catch((err) => toast.error(err.message));
   };
-
+  useTitle('Edit Review')
   return (
     <section className="lg:w-2/3 mx-auto">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">

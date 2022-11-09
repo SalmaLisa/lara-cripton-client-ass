@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import author from "../assets/lara.jpeg";
+import { useTitle } from "../Hooks/useTitle";
 
 const Blog = () => {
   const today = new Date();
@@ -10,7 +11,7 @@ const Blog = () => {
   const currentDate = `${day < 10 ? "0" + day : day}/${
     month < 10 ? "0" + month : month
   }/${year}`;
-
+  useTitle('Blog')
   return (
     <div className="bg-gradient-to-tr from-pink-100 via-white  to-rose-100">
       <div className="relative flex flex-col max-w-xl p-6 divide-y xl:flex-row xl:divide-y-0 xl:divide-x  divide-pink-500 lg:ml-72 pt-16">

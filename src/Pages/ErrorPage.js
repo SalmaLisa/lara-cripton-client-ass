@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTitle } from '../Hooks/useTitle';
 
 const ErrorPage = () => {
+	useTitle('Page not found')
   return (
     <section className="flex items-center h-screen p-16 bg-gradient-to-tr from-pink-100 via-teal-200  to-rose-200 text-gray-800">
 	<div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">

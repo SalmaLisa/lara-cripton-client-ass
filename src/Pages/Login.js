@@ -5,8 +5,10 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import toast from "react-hot-toast";
+import { useTitle } from "../Hooks/useTitle";
 
 const Login = () => {
+  useTitle('Login')
   const { login, googleSignIn } = useContext(AuthContext)
   const location = useLocation()
   const navigate = useNavigate()

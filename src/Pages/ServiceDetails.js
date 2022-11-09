@@ -6,6 +6,7 @@ import DisplayReview from "../Components/DisplayReview";
 import PriceCard from "../Components/PriceCard";
 import Sidebar from "../Components/Sidebar";
 import 'react-photo-view/dist/react-photo-view.css';
+import { useTitle } from "../Hooks/useTitle";
 
 const ServiceDetails = () => {
   const [services, setServices] = useState([]);
@@ -16,7 +17,7 @@ const ServiceDetails = () => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-
+  useTitle('Service Details')
   return (
     <section className="p-6 dark:bg-gray-800 dark:text-gray-100 w-11/12 mx-auto ">
       <div className="container grid gap-8 mx-auto text-center lg:grid-cols-2 xl:grid-cols-6 ">

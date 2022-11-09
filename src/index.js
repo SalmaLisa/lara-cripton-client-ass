@@ -6,11 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { Toaster } from 'react-hot-toast';
 import AuthProvider from './Contexts/AuthProvider';
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthProvider>
+    
     <Toaster position="top-center" />
-    <App />
+      <App />
+  
   </AuthProvider>
 );
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Components/Sidebar";
+import { useTitle } from "../Hooks/useTitle";
 import ServiceCard from "../Shared/ServiceCard";
 
 const Services = () => {
@@ -9,7 +10,7 @@ const Services = () => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-
+  useTitle('Service')
   return (
     <>
       <div className="my-24">
