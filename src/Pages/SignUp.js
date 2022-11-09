@@ -6,19 +6,23 @@ import { BiUser } from 'react-icons/bi';
 import { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 const SignUp = () => {
-  const {createUser,googleSignIn}=useContext(AuthContext)
+  const [userName,setUserName]=useState('')
+  const {createUser,updateUsername,googleSignIn}=useContext(AuthContext)
   const handleFormSubmit = e => {
     e.preventDefault();
     const form = e.target;
     const name = form.username.value;
+    setUserName(name)
     const email = form.email.value;
     const password = form.password.value;
     
     //create user
     createUser(email, password)
       .then(result => {
+        updateName()
         toast.success('user created successfully ')
         console.log(result.user)
       })
@@ -41,6 +45,13 @@ const SignUp = () => {
         console.log(err)
     })
   }
+console.log(userName)
+  //update userName
+  const updateName = () => {
+    updateUsername(userName)
+      .then(() => toast.success('profile updated'))
+    .catch(err=>console.error(err))
+  }
   return (
     <div className="w-full max-w-md p-8 space-y-3 shadow rounded my-20 dark:bg-gray-900 dark:text-gray-100 border border-pink-200 mx-auto">
       <h1 className="text-3xl pb-4 font-bold text-center">Sign Up</h1>
@@ -60,6 +71,7 @@ const SignUp = () => {
             id="username"
             placeholder="Username"
             className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none"
+            required
           />
          </div>
         </div>
@@ -75,6 +87,7 @@ const SignUp = () => {
             id="email"
             placeholder="Your Email"
             className="w-full px-3 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none "
+            required
           />
          </div>
         </div>
@@ -90,6 +103,7 @@ const SignUp = () => {
             id="password"
             placeholder="Password"
             className="w-full px-3 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none "
+            required
           />
          </div>
         </div>

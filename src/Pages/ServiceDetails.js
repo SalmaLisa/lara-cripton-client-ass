@@ -45,12 +45,12 @@ const ServiceDetails = () => {
           <h1 className="text-4xl font-bold my-6 text-left">{title}</h1>
           <p className="mt-5 text-justify text-xl">{desc}</p>
           <div className="text-left my-4 text-xl font-semibold">
-            {objectives.map((obj) => (
-              <li>{obj}</li>
+            {objectives.map((obj,idx) => (
+              <li key={idx}>{obj}</li>
             ))}
           </div>
           <p className="text-justify text-xl">{desc2}</p>
-          <AddReview></AddReview>
+          <AddReview service={service}></AddReview>
         </div>
       </div>
     </section>

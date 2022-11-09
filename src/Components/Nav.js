@@ -66,7 +66,7 @@ const Nav = () => {
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Pricing
+              {user?.displayName ? user.displayName:"user"}
             </NavLink>
           </li>
           <li>
@@ -83,7 +83,7 @@ const Nav = () => {
             user?.uid ?
             <li onClick={handleLogOut}>
             <Link
-              to="/signup"
+              to="/home"
               className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
               aria-label="Sign up"
               title="Sign up"
@@ -94,7 +94,7 @@ const Nav = () => {
               :
               <li>
               <Link
-                to="/signup"
+                to="/login"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
@@ -209,7 +209,7 @@ const Nav = () => {
             user?.uid ?
             <li onClick={handleLogOut}>
             <Link
-              to="/signup"
+              to="/home"
               className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
               aria-label="Sign up"
               title="Sign up"
@@ -220,7 +220,7 @@ const Nav = () => {
               :
               <li>
               <Link
-                to="/signup"
+                to="/login"
                 className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
