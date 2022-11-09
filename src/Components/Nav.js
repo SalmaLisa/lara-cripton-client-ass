@@ -95,16 +95,7 @@ const Nav = () => {
               Blog
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to='/reviews'
-              aria-label="Product pricing"
-              title="Product pricing"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Reviews
-            </NavLink>
-          </li>
+          
           {
             user?.uid ?
             <li onClick={handleLogOut}>
@@ -212,15 +203,31 @@ const Nav = () => {
                         Services
                       </NavLink>
                     </li>
-                    <li>
-                      <NavLink
-                        aria-label="Product pricing"
-                        title="Product pricing"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Pricing
-                      </NavLink>
-                    </li>
+                    {
+            user?.uid &&
+            <>
+              <li>
+            <NavLink
+              to='/myReviews'
+              aria-label="Product pricing"
+              title="Product pricing"
+              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            >
+              My Reviews
+            </NavLink>
+              </li>
+              <li>
+            <NavLink
+              to='/addService'
+              aria-label="Product pricing"
+              title="Product pricing"
+              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            >
+              Add Service
+            </NavLink>
+          </li>
+            </>
+          }
                     <li>
                       <NavLink
                         to="/blog"

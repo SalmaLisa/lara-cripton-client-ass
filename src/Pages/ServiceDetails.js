@@ -21,7 +21,7 @@ const ServiceDetails = () => {
       <div className="container grid gap-8 mx-auto text-center lg:grid-cols-2 xl:grid-cols-6 ">
         <div className=" xl:col-span-2 ">
           <div
-            style={{ height: "450px" }}
+            
             className="w-full px-4 pb-8 pt-12  sm:px-12 md:px-8 xl:col-span-2 bg-cyan-700 opacity-70  text-white "
           >
             <div className="">
@@ -47,7 +47,7 @@ const ServiceDetails = () => {
           <h1 className="text-4xl font-bold my-6 text-left">{title}</h1>
           <p className="mt-5 text-justify text-xl">{desc}</p>
           <div className="text-left my-4 text-xl font-semibold">
-            {objectives.map((obj,idx) => (
+            {objectives?.map((obj,idx) => (
               <li key={idx}>{obj}</li>
             ))}
           </div>

@@ -7,10 +7,10 @@ import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import MyReviews from "../Pages/MyReviews";
-import Reviews from "../Pages/Reviews";
 import ServiceDetails from "../Pages/ServiceDetails";
 import Services from "../Pages/Services";
 import SignUp from "../Pages/SignUp";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/myReviews',
-        element:<MyReviews></MyReviews>
+        element:<ProtectedRoute><MyReviews></MyReviews></ProtectedRoute>
       },
       {
         path: '/editReview/:id',
@@ -49,12 +49,8 @@ export const router = createBrowserRouter([
         element:<Blog></Blog>
       },
       {
-        path: '/reviews',
-        element:<Reviews></Reviews>
-      },
-      {
         path: '/addService',
-        element:<AddService></AddService>
+        element:<ProtectedRoute><AddService></AddService></ProtectedRoute>
       },
       
       {
