@@ -62,12 +62,12 @@ const Nav = () => {
           </li>
           <li>
             <NavLink
-              to='/reviews'
+              to='/myReviews'
               aria-label="Product pricing"
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Reviews
+              My Reviews
             </NavLink>
           </li>
           <li>
@@ -78,6 +78,16 @@ const Nav = () => {
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
               Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/reviews'
+              aria-label="Product pricing"
+              title="Product pricing"
+              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            >
+              Reviews
             </NavLink>
           </li>
           {
