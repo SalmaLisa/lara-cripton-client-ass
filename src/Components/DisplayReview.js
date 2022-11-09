@@ -16,8 +16,7 @@ const DisplayReview = ({ serviceId }) => {
       <div className="h-96 flex justify-center items-center">
         <div>
           <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
-            What people say about{" "}
-            <span className="text-pink-600">Lara Cripton</span>
+            What people say about this service
           </h1>
           <h1 className="text-red-500 text-2xl text-center">No reviews yet </h1>
         </div>
@@ -25,10 +24,9 @@ const DisplayReview = ({ serviceId }) => {
     );
   }
   return (
-    <div className="mt-32 ">
+    <div className="mt-32">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
-        What people say about{" "}
-        <span className="text-pink-600">Lara Cripton</span>
+        What people say about this service
       </h1>
       <div className="grid lg:grid-cols-3 gap-8 mt-24">
         {reviews.map((review) => (

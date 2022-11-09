@@ -23,7 +23,7 @@ const Reviews = () => {
     );
   }
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="min-h-screen w-11/12 mx-auto">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
         What people say about{" "}
         <span className="text-pink-600">Lara Cripton</span>

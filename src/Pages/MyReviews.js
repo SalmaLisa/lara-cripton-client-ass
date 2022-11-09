@@ -44,8 +44,8 @@ const handleDelete = (id) => {
   return (
     <div className="min-h-screen">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
-        You made <span className="text-pink-600">{reviews.length} </span>reviews
-        to <span className="text-pink-600">Lara Cripton</span>
+        You made <span className="text-pink-600">{reviews.length} </span>comments
+        on <span className="text-pink-600">Lara Cripton</span>
       </h1>
       <div className="overflow-x-auto w-11/12 mx-auto ">
         <table className="table w-full">

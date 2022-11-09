@@ -3,13 +3,13 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 import toast from "react-hot-toast";
+import { HiOutlineArrowRight } from 'react-icons/hi';
 
 const AddReview = ({ service }) => {
   const [rating, setRating] = useState(1);
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const date = new Date();
   const day = date.getDate();
@@ -19,10 +19,10 @@ const AddReview = ({ service }) => {
     month < 10 ? "0" + month : month
   }/${year}`;
 
-  const hours = date.getHours()
+  const hours = date.getHours();
   const minutes = date.getMinutes();
-  const currentTime = `${hours}:${minutes<10? "0"+minutes:minutes} ${hours<12 ? "AM":"PM"}`
-  
+  const currentTime = `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
+
   const handleAddReview = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,7 +30,7 @@ const AddReview = ({ service }) => {
     const photoURL = form.photoURL.value;
     const message = form.message.value;
     const review = {
-      serviceTitle:service.title,
+      serviceTitle: service.title,
       serviceId: service._id,
       username,
       email: user?.email,
@@ -38,35 +38,39 @@ const AddReview = ({ service }) => {
       message,
       rating,
       currentDate,
-      currentTime
+      currentTime,
     };
-    if (user?.uid) {
-      fetch("http://localhost:5000/reviews", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(review),
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            icon: "success",
+            title: "Thanks for your review ❤ ",
+          });
+        }
+        form.reset();
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.acknowledged) {
-            Swal.fire({
-              icon: "success",
-              title: "Thanks for your review ❤ ",
-            });
-          }
-          form.reset()
-        })
-      .catch(err=>toast.error(err.message))
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "To add review Please login first ",
-      });
-      navigate("/login");
-    }
+      .catch((err) => toast.error(err.message));
   };
+
+ 
+
+  if (!user?.uid) {
+    return (
+      <div className="my-12">
+        <Link to='/login' className="text-red-500 hover:text-red-600 text-xl font-semibold flex items-center justify-center cursor-pointer"><span>Please login to add a review</span><HiOutlineArrowRight className="mt-1 ml-2"></HiOutlineArrowRight></Link>
+      </div>
+    );
+  }
+
   return (
     <section className="lg:w-2/3 mx-auto">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { useContext } from "react";
@@ -7,7 +7,10 @@ import { AuthContext } from "../Contexts/AuthProvider";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const {login,googleSignIn}=useContext(AuthContext)
+  const { login, googleSignIn } = useContext(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location.state?.from.pathname || '/'
   const handleFormSubmit = e => {
     e.preventDefault();
     const form = e.target;
@@ -19,6 +22,7 @@ const Login = () => {
       .then(result => {
         toast.success('successfully logged in')
         console.log(result.user);
+        navigate(from, {replace:true})
       })
       .catch(err => {
         toast.error(err.message)
@@ -31,7 +35,8 @@ const Login = () => {
     googleSignIn()
       .then(result => {
         toast.success('successfully logged in')
-      console.log(result.user);
+        console.log(result.user);
+        navigate(from, {replace:true})
       })
       .catch(err => {
         toast.error(err.message)

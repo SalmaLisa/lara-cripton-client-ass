@@ -60,7 +60,10 @@ const Nav = () => {
               Services
             </NavLink>
           </li>
-          <li>
+          {
+            user?.uid &&
+            <>
+              <li>
             <NavLink
               to='/myReviews'
               aria-label="Product pricing"
@@ -69,7 +72,19 @@ const Nav = () => {
             >
               My Reviews
             </NavLink>
+              </li>
+              <li>
+            <NavLink
+              to='/addService'
+              aria-label="Product pricing"
+              title="Product pricing"
+              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            >
+              Add Service
+            </NavLink>
           </li>
+            </>
+          }
           <li>
             <NavLink
               to="/blog"
