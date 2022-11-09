@@ -3,7 +3,7 @@ import { useState } from "react";
 import ReviewCard from "../Shared/ReviewCard";
 
 const DisplayReview = ({ serviceId }) => {
-  console.log(serviceId);
+  
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/reviews/${serviceId}`)

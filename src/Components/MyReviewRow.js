@@ -7,7 +7,7 @@ const MyReviewRow = ({ review, handleDelete }) => {
     review;
 
   return (
-    <div>
+    <>
       <tr className="border">
         <th>
           <label
@@ -18,7 +18,7 @@ const MyReviewRow = ({ review, handleDelete }) => {
             ❌
           </label>
         </th>
-        <div className="grid lg:grid-cols-12">
+        <span className="grid lg:grid-cols-12">
           <td className="md:col-span-4 ">
             <span className="flex flex-col md:flex-row items-center space-x-3">
               <div className="avatar">
@@ -51,9 +51,9 @@ const MyReviewRow = ({ review, handleDelete }) => {
               </button>
             </Link>
           </th>
-        </div>
+        </span>
       </tr>
-    </div>
+    </>
   );
 };
 
