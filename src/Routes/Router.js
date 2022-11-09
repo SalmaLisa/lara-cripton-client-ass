@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Blog from "../Pages/Blog";
+import EditReview from "../Pages/EditReview";
+import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import MyReviews from "../Pages/MyReviews";
@@ -13,7 +15,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <Main></Main>,
-    errorElement:<div>page is not found !</div>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -35,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: '/myReviews',
         element:<MyReviews></MyReviews>
+      },
+      {
+        path: '/editReview/:id',
+        element:<EditReview></EditReview>
       },
       {
         path: '/blog',
