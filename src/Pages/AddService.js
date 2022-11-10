@@ -35,7 +35,7 @@ const AddService = () => {
   };
 
   return (
-    <section className="lg:w-2/3 mx-auto">
+    <section className="lg:w-2/3 px-5 mx-auto">
       <form
         onSubmit={handleAddService}
         className="container flex flex-col mx-auto mt-12 space-y-12 text-left"

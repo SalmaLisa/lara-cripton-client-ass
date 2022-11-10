@@ -12,7 +12,7 @@ const LimitedService = () => {
       .then((data) => setServices(data));
   }, []);
   return (
-    <div className=" pb-20 bg-base-200">
+    <div className=" pb-10 bg-base-200">
       <div className="py-24">
         <h1 className="text-3xl font-semibold lg:text-5xl text-center text-blue-900">
           I Can Help You In Different Situations
@@ -29,7 +29,7 @@ const LimitedService = () => {
       <Link to="/services">
         <button
           type="button"
-          className="flex items-center justify-center text-xl uppercase my-16 mx-auto py-2 px-12 font-bold tracking-wide rounded-md border border-indigo-600 text-indigo-600  hover:bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 hover:text-white"
+          className="flex items-center justify-center text-xl uppercase my-16 mx-auto py-2 px-12 font-bold tracking-wide rounded-md border  text-pink-600  bg-gradient-to-bl from-teal-200  via-pink-200 to-pink-300 hover:border-none"
         >
           See All
         </button>

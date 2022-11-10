@@ -1,0 +1,10 @@
+@media only screen  and (max-width:576px) {
+  .bannerImg{
+    height: 350px;
+  }
+}
+@media only screen  and (min-width:768px)and (max-width:992px) {
+  .bannerImg{
+    height: 550px;
+  }
+}

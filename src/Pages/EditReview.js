@@ -49,7 +49,7 @@ const EditReview = () => {
   };
   useTitle("Edit Review");
   return (
-    <section className="lg:w-2/3 mx-auto">
+    <section className="lg:w-2/3 px-5 mx-auto">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
         {review.serviceTitle}
       </h1>

@@ -29,7 +29,7 @@ const ServiceCard = ({ service }) => {
           <Link to={`/services/${_id}`}>
           <button
           type="button"
-          className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900"
+          className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-gradient-to-tr from-pink-400 to-pink-200 text-gray-900"
         >
           View Details
         </button></Link>

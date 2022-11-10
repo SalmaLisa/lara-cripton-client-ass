@@ -124,10 +124,10 @@ const Login = () => {
         />
       </form>
       <div className="flex items-center pt-2 space-x-1">
-        <div className="flex items-center w-full my-4">
-          <hr className="w-1/5 border-gray-400 " />
-          <p className="px-3 dark:text-gray-400">Login with social accounts</p>
-          <hr className="w-1/5 border-gray-400 " />
+        <div className="flex items-center justify-center w-full my-4">
+          <hr className="w-1/5 border-gray-400 hidden md:block" />
+          <p className="px-3 dark:text-gray-400 ">Login with social accounts</p>
+          <hr className="w-1/5 border-gray-400 hidden md:block" />
         </div>
       </div>
       <div className="flex justify-center space-x-4">

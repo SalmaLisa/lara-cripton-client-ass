@@ -1,63 +1,98 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import { AiOutlineMail } from 'react-icons/ai';
-import { RiLockPasswordLine } from 'react-icons/ri';
-import { BiUser } from 'react-icons/bi';
-import { useContext } from 'react';
-import { AuthContext } from '../Contexts/AuthProvider';
-import toast from 'react-hot-toast';
-import { useState } from 'react';
-import { useTitle } from '../Hooks/useTitle';
-import Spinner from '../Components/Spinner';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineMail } from "react-icons/ai";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { BiUser } from "react-icons/bi";
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/AuthProvider";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import { useTitle } from "../Hooks/useTitle";
+import Spinner from "../Components/Spinner";
 
 const SignUp = () => {
-  const [userName,setUserName]=useState('')
-  const {createUser,updateUsername,googleSignIn,loading}=useContext(AuthContext)
-  const handleFormSubmit = e => {
+  const [userName, setUserName] = useState("");
+  const { createUser, updateUsername, googleSignIn, loading,setLoading } =
+    useContext(AuthContext);
+  const navigate =useNavigate()
+  const handleFormSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.username.value;
-    setUserName(name)
+    setUserName(name);
     const email = form.email.value;
     const password = form.password.value;
-    
+
     //create user
     createUser(email, password)
-      .then(result => {
-        updateName()
-        toast.success('user created successfully ')
-        console.log(result.user)
+      .then((result) => {
+        updateName();
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        fetch("https://lara-cripton-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("lara-access-token", data.token);
+          });
+        toast.success("user created successfully ");
+        navigate('/home')
+        console.log(result.user);
       })
-      .catch(err => {
-        toast.error(err.message)
-      console.error(err)
-    })
-    
-  }
+      .catch((err) => {
+        toast.error(err.message);
+        setLoading(false)
+        console.error(err);
+      });
+  };
 
   // google sign in
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then(result => {
-        toast.success('successfully logged in')
-      console.log(result.user);
+      .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        fetch("https://lara-cripton-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("lara-access-token", data.token);
+          });
+        toast.success("successfully logged in");
+        navigate('/home')
+        console.log(result.user);
       })
-      .catch(err => {
-        toast.error(err.message)
-        console.log(err)
-    })
-  }
-console.log(userName)
+      .catch((err) => {
+        toast.error(err.message);
+        setLoading(false)
+        console.log(err);
+      });
+  };
+  console.log(userName);
   //update userName
   const updateName = () => {
     updateUsername(userName)
-      .then(() => toast.success('profile updated'))
-    .catch(err=>console.error(err))
-  }
-  useTitle('Sign Up')
+      .then(() => toast.success("profile updated"))
+      .catch((err) => console.error(err));
+  };
+  useTitle("Sign Up");
 
   if (loading) {
-    return <Spinner></Spinner>
+    return <Spinner></Spinner>;
   }
   return (
     <div className="w-full max-w-md p-8 space-y-3 shadow rounded my-20 dark:bg-gray-900 dark:text-gray-100 border border-pink-200 mx-auto">
@@ -71,63 +106,70 @@ console.log(userName)
             Username
           </label>
           <div className="flex justify-center items-center border-b-2">
-          <BiUser className="text-xl text-gray-400 "></BiUser>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Username"
-            className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none"
-            required
-          />
-         </div>
+            <BiUser className="text-xl text-gray-400 "></BiUser>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Username"
+              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none"
+              required
+            />
+          </div>
         </div>
         <div className="space-y-1 text-sm">
           <label htmlFor="email" className="block dark:text-gray-400">
             Your Email
           </label>
           <div className="flex justify-center items-center border-b-2">
-          <AiOutlineMail className="text-xl text-gray-400 "></AiOutlineMail>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Your Email"
-            className="w-full px-3 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none "
-            required
-          />
-         </div>
+            <AiOutlineMail className="text-xl text-gray-400 "></AiOutlineMail>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Your Email"
+              className="w-full px-3 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none "
+              required
+            />
+          </div>
         </div>
         <div className="space-y-1 text-sm">
           <label htmlFor="password" className="block dark:text-gray-400">
             Password
           </label>
           <div className="flex justify-center items-center border-b-2">
-          <RiLockPasswordLine className="text-xl text-gray-400 "></RiLockPasswordLine>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            className="w-full px-3 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none "
-            required
-          />
-         </div>
+            <RiLockPasswordLine className="text-xl text-gray-400 "></RiLockPasswordLine>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              className="w-full px-3 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:outline-none "
+              required
+            />
+          </div>
         </div>
-        
-          <input type="submit" className='w-full h-12 px-6 font-medium text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none cursor-pointer' value="Sign up " />
-        
+
+        <input
+          type="submit"
+          className="w-full h-12 px-6 font-medium text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none cursor-pointer"
+          value="Sign up "
+        />
       </form>
       <div className="flex items-center pt-4 space-x-1">
-      <div className="flex items-center w-full my-4">
-		<hr className="w-1/5 border-gray-400 "/>
-		<p className="px-3 dark:text-gray-400">Login with social accounts</p>
-		<hr className="w-1/5 border-gray-400 "/>
-	</div>
+        <div className="flex items-center justify-center w-full my-4">
+          <hr className="w-1/5 border-gray-400 hidden md:block" />
+          <p className="px-3 dark:text-gray-400 ">Login with social accounts</p>
+          <hr className="w-1/5 border-gray-400 hidden md:block" />
+        </div>
       </div>
-          
+
       <div className="flex justify-center space-x-4">
-        <button onClick={handleGoogleSignIn} aria-label="Log in with Google" className="p-3 rounded-sm">
+        <button
+          onClick={handleGoogleSignIn}
+          aria-label="Log in with Google"
+          className="p-3 rounded-sm"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
@@ -157,10 +199,7 @@ console.log(userName)
       </div>
       <p className="text-xs text-center sm:px-6 dark:text-gray-400">
         Already have an account ?
-        <Link
-          to='/login'
-          className=" text-pink-600 ml-2"
-        >
+        <Link to="/login" className=" text-pink-600 ml-2">
           Login
         </Link>
       </p>
