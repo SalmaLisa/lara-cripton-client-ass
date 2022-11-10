@@ -6,11 +6,11 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { HiOutlineArrowRight } from "react-icons/hi";
+import DisplayReview from "./DisplayReview";
 
 const AddReview = ({ service }) => {
   const [rating, setRating] = useState(1);
   const [reviews, setReviews] = useState([]);
-  const [singleReviews, setSingleReviews] = useState({});
   const { user } = useContext(AuthContext);
 
   const date = new Date();
@@ -66,6 +66,10 @@ const AddReview = ({ service }) => {
             icon: "success",
             title: "Thanks for your review ❤ ",
           });
+          
+          fetch(`https://lara-cripton-server.vercel.app/reviews/${service._id}`)
+            .then((res) => res.json())
+            .then((data) => setReviews(data));
         }
         form.reset();
       })
@@ -87,7 +91,9 @@ const AddReview = ({ service }) => {
   }
 
   return (
-    <section className="lg:w-2/3 mx-auto">
+    <div>
+      <DisplayReview reviews={reviews}></DisplayReview>
+      <section className="lg:w-2/3 mx-auto">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
         Inspire me by adding a review
       </h1>
@@ -209,6 +215,7 @@ const AddReview = ({ service }) => {
         </fieldset>
       </form>
     </section>
+    </div>
   );
 };
 

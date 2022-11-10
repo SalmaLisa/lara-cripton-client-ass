@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { useLoaderData } from "react-router-dom";
 import AddReview from "../Components/AddReview";
-import DisplayReview from "../Components/DisplayReview";
 import PriceCard from "../Components/PriceCard";
 import Sidebar from "../Components/Sidebar";
 import "react-photo-view/dist/react-photo-view.css";
@@ -58,7 +57,6 @@ const ServiceDetails = () => {
           <p className="text-justify text-xl">{desc2}</p>
         </div>
       </div>
-      <DisplayReview serviceId={service._id}></DisplayReview>
       <AddReview service={service}></AddReview>
     </section>
   );

@@ -10,7 +10,7 @@ import Spinner from "../Components/Spinner";
 
 const Login = () => {
   useTitle("Login");
-  const { login, googleSignIn,loading } = useContext(AuthContext);
+  const { login, googleSignIn,loading ,setLoading } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from.pathname || "/";
@@ -43,6 +43,7 @@ const Login = () => {
       })
       .catch((err) => {
         toast.error(err.message);
+        setLoading(false)
         console.error(err);
       });
   };
@@ -71,6 +72,7 @@ const Login = () => {
       })
       .catch((err) => {
         toast.error(err.message);
+        setLoading(false)
         console.log(err);
       });
   };

@@ -1,16 +1,8 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 import ReviewCard from "../Shared/ReviewCard";
 
-const DisplayReview = ({ serviceId }) => {
-  const [reviews, setReviews] = useState([]);
-  
-  useEffect(() => {
-    fetch(`https://lara-cripton-server.vercel.app/reviews/${serviceId}`)
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, [serviceId]);
-
+const DisplayReview = ({ reviews }) => {
+ 
   if (reviews.length === 0) {
     return (
       <div className="h-96 flex justify-center items-center">
