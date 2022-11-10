@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import Swal from "sweetalert2";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
-import { HiOutlineArrowRight } from 'react-icons/hi';
+import { HiOutlineArrowRight } from "react-icons/hi";
 
 const AddReview = ({ service }) => {
   const [rating, setRating] = useState(1);
+  const [reviews, setReviews] = useState([]);
+  const [singleReviews, setSingleReviews] = useState({});
   const { user } = useContext(AuthContext);
 
   const date = new Date();
@@ -23,6 +25,14 @@ const AddReview = ({ service }) => {
   const minutes = date.getMinutes();
   const currentTime = `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
 
+  
+  useEffect(() => {
+    fetch(`https://lara-cripton-server.vercel.app/reviews/${service._id}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, [service._id]);
+
+  console.log(reviews)
   const handleAddReview = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -41,7 +51,7 @@ const AddReview = ({ service }) => {
       currentTime,
     };
 
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://lara-cripton-server.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -55,18 +65,32 @@ const AddReview = ({ service }) => {
             icon: "success",
             title: "Thanks for your review ❤ ",
           });
+
+          
+            fetch(`https://lara-cripton-server.vercel.app/reviews/${data.insertedId}`)
+              .then((res) => res.json())
+              .then((data) => {
+                const newReviewArray = [...reviews, data]
+                // setReviews(newReviewArray)
+              });
+          
         }
+        console.log(data)
         form.reset();
       })
       .catch((err) => toast.error(err.message));
   };
 
- 
-
   if (!user?.uid) {
     return (
       <div className="my-12">
-        <Link to='/login' className="text-red-500 hover:text-red-600 text-xl font-semibold flex items-center justify-center cursor-pointer"><span>Please login to add a review</span><HiOutlineArrowRight className="mt-1 ml-2"></HiOutlineArrowRight></Link>
+        <Link
+          to="/login"
+          className="text-red-500 hover:text-red-600 text-xl font-semibold flex items-center justify-center cursor-pointer"
+        >
+          <span>Please login to add a review</span>
+          <HiOutlineArrowRight className="mt-1 ml-2"></HiOutlineArrowRight>
+        </Link>
       </div>
     );
   }
@@ -108,7 +132,7 @@ const AddReview = ({ service }) => {
               <input
                 id="email"
                 type="text"
-                placeholder={user?.email ? user.email : "Your Email"}
+                value={user?.email ? user.email : "Your Email"}
                 className="w-full border border-cyan-400 p-3 focus:outline-none "
                 readOnly
               />

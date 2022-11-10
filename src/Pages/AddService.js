@@ -1,9 +1,9 @@
-import React from 'react';
-import toast from 'react-hot-toast';
-import { useTitle } from '../Hooks/useTitle';
+import React from "react";
+import toast from "react-hot-toast";
+import { useTitle } from "../Hooks/useTitle";
 const AddService = () => {
-  useTitle('Add Service')
-  const handleAddService= (e) => {
+  useTitle("Add Service");
+  const handleAddService = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
@@ -12,12 +12,12 @@ const AddService = () => {
     const price = form.price.value;
     const newService = {
       title,
-      price:`$${price}`,
+      price: `$${price}`,
       img,
-      desc
+      desc,
     };
-    console.log(newService)
-    fetch("http://localhost:5000/services", {
+    console.log(newService);
+    fetch("https://lara-cripton-server.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -27,7 +27,7 @@ const AddService = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("service successfully added")
+          toast.success("service successfully added");
         }
         form.reset();
       })
@@ -36,7 +36,6 @@ const AddService = () => {
 
   return (
     <section className="lg:w-2/3 mx-auto">
-      
       <form
         onSubmit={handleAddService}
         className="container flex flex-col mx-auto mt-12 space-y-12 text-left"
@@ -54,7 +53,7 @@ const AddService = () => {
                 id="title"
                 type="text"
                 name="title"
-                placeholder='Service Title'
+                placeholder="Service Title"
                 className="w-full border border-cyan-400 p-3 focus:outline-none"
                 required
               />
@@ -69,9 +68,8 @@ const AddService = () => {
               <input
                 id="price"
                 type="number"
-                placeholder='Price'
+                placeholder="Price"
                 className="w-full border border-cyan-400 p-3 focus:outline-none "
-               
               />
             </div>
             <div className="col-span-full ">

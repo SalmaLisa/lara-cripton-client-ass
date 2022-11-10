@@ -6,11 +6,11 @@ import ServiceCard from "../Shared/ServiceCard";
 const Services = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://lara-cripton-server.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-  useTitle('Service')
+  useTitle("Service");
   return (
     <>
       <div className="my-24">

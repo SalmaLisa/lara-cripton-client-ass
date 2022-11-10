@@ -3,13 +3,21 @@ import { useState } from "react";
 import ReviewCard from "../Shared/ReviewCard";
 
 const DisplayReview = ({ serviceId }) => {
-  
   const [reviews, setReviews] = useState([]);
+  const [allReview, setAllReview] = useState([]);
+  const allReviewLength = allReview.length
+  console.log(allReviewLength)
+
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${serviceId}`)
+    fetch(`https://lara-cripton-server.vercel.app/reviews`)
+      .then((res) => res.json())
+      .then((data) => setAllReview(data));
+  }, []);
+  useEffect(() => {
+    fetch(`https://lara-cripton-server.vercel.app/reviews/${serviceId}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  }, [serviceId]);
+  }, [serviceId,allReviewLength]);
 
   if (reviews.length === 0) {
     return (

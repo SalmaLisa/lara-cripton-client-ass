@@ -14,53 +14,65 @@ import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Main></Main>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: '/',
-        element:<Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path: '/home',
-        element:<Home></Home>
+        path: "/home",
+        element: <Home></Home>,
       },
       {
-        path: '/services',
-        element:<Services></Services>
+        path: "/services",
+        element: <Services></Services>,
       },
       {
-        path: '/services/:id',
-        loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`),
-        element: <ServiceDetails></ServiceDetails>
+        path: "/services/:id",
+        loader: ({ params }) =>
+          fetch(`https://lara-cripton-server.vercel.app/services/${params.id}`),
+        element: <ServiceDetails></ServiceDetails>,
       },
       {
-        path: '/myReviews',
-        element:<ProtectedRoute><MyReviews></MyReviews></ProtectedRoute>
+        path: "/myReviews",
+        element: (
+          <ProtectedRoute>
+            <MyReviews></MyReviews>
+          </ProtectedRoute>
+        ),
       },
       {
-        path: '/editReview/:id',
-        loader: ({params})=>fetch(`http://localhost:5000/editReviews/${params.id}`),
+        path: "/editReview/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://lara-cripton-server.vercel.app/editReviews/${params.id}`
+          ),
         element: <EditReview></EditReview>,
       },
       {
-        path: '/blog',
-        element:<Blog></Blog>
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
-        path: '/addService',
-        element:<ProtectedRoute><AddService></AddService></ProtectedRoute>
+        path: "/addService",
+        element: (
+          <ProtectedRoute>
+            <AddService></AddService>
+          </ProtectedRoute>
+        ),
       },
-      
+
       {
-        path: '/login',
-        element:<Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/signup',
-        element:<SignUp></SignUp>
+        path: "/signup",
+        element: <SignUp></SignUp>,
       },
-    ]
-  }
-])
+    ],
+  },
+]);

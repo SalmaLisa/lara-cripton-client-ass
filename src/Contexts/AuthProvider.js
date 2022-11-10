@@ -41,6 +41,7 @@ const AuthProvider = ({ children }) => {
   //logout
   const logout = () => {
     setLoading(true)
+    localStorage.removeItem('lara-access-token')
     return signOut(auth)
   }
 

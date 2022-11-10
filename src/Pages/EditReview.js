@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import toast from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
-import { useTitle } from '../Hooks/useTitle';
-
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
+import { useTitle } from "../Hooks/useTitle";
 
 const EditReview = () => {
   const [rating, setRating] = useState(1);
-  const review = useLoaderData()
+  const review = useLoaderData();
 
   const date = new Date();
   const day = date.getDate();
@@ -28,10 +27,10 @@ const EditReview = () => {
       message,
       currentDate,
       currentTime,
-      rating
+      rating,
     };
 
-    fetch(`http://localhost:5000/editReviews/${review._id}`, {
+    fetch(`https://lara-cripton-server.vercel.app/editReviews/${review._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -40,15 +39,15 @@ const EditReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        if (data.modifiedCount>0) {
-          toast.success('Edited successfully')
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Edited successfully");
         }
         form.reset();
       })
       .catch((err) => toast.error(err.message));
   };
-  useTitle('Edit Review')
+  useTitle("Edit Review");
   return (
     <section className="lg:w-2/3 mx-auto">
       <h1 className="text-4xl text-blue-900 font-semibold my-12 text-center">
@@ -91,7 +90,7 @@ const EditReview = () => {
                 readOnly
               />
             </div>
-            
+
             <div className="col-span-full">
               <label
                 htmlFor="message"
