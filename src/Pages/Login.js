@@ -6,10 +6,11 @@ import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useTitle } from "../Hooks/useTitle";
+import Spinner from "../Components/Spinner";
 
 const Login = () => {
   useTitle("Login");
-  const { login, googleSignIn } = useContext(AuthContext);
+  const { login, googleSignIn,loading } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from.pathname || "/";
@@ -73,6 +74,9 @@ const Login = () => {
         console.log(err);
       });
   };
+  if (loading) {
+    return <Spinner></Spinner>
+  }
   return (
     <div className="w-full max-w-md p-8 space-y-3 shadow rounded my-20 dark:bg-gray-900 dark:text-gray-100 border border-pink-200 mx-auto">
       <h1 className="text-3xl mb-4 font-bold text-center">Login</h1>

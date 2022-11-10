@@ -8,10 +8,11 @@ import { AuthContext } from '../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useTitle } from '../Hooks/useTitle';
+import Spinner from '../Components/Spinner';
 
 const SignUp = () => {
   const [userName,setUserName]=useState('')
-  const {createUser,updateUsername,googleSignIn}=useContext(AuthContext)
+  const {createUser,updateUsername,googleSignIn,loading}=useContext(AuthContext)
   const handleFormSubmit = e => {
     e.preventDefault();
     const form = e.target;
@@ -54,6 +55,10 @@ console.log(userName)
     .catch(err=>console.error(err))
   }
   useTitle('Sign Up')
+
+  if (loading) {
+    return <Spinner></Spinner>
+  }
   return (
     <div className="w-full max-w-md p-8 space-y-3 shadow rounded my-20 dark:bg-gray-900 dark:text-gray-100 border border-pink-200 mx-auto">
       <h1 className="text-3xl pb-4 font-bold text-center">Sign Up</h1>

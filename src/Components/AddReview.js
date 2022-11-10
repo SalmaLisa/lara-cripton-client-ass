@@ -66,13 +66,6 @@ const AddReview = ({ service }) => {
             icon: "success",
             title: "Thanks for your review ❤ ",
           });
-
-          // fetch(`https://lara-cripton-server.vercel.app/reviews/${data.insertedId}`)
-          //   .then((res) => res.json())
-          //   .then((data) => {
-          //     const newReviewArray = [...reviews, data]
-          //     // setReviews(newReviewArray)
-          //   });
         }
         form.reset();
       })

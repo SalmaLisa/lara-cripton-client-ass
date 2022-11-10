@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import Sidebar from "../Components/Sidebar";
+import Spinner from "../Components/Spinner";
+import { AuthContext } from "../Contexts/AuthProvider";
 import { useTitle } from "../Hooks/useTitle";
 import ServiceCard from "../Shared/ServiceCard";
 
 const Services = () => {
+  const { loading } = useContext(AuthContext)
+  // loading && <Spinner></Spinner>
+  // // if (loading) {
+  // //   return <Spinner></Spinner>
+  // // }
+  
   const [services, setServices] = useState([]);
   useEffect(() => {
     fetch("https://lara-cripton-server.vercel.app/services")
@@ -11,6 +20,11 @@ const Services = () => {
       .then((data) => setServices(data));
   }, []);
   useTitle("Service");
+  
+  if (loading) {
+      return <Spinner></Spinner>
+    }
+
   return (
     <>
       <div className="my-24">

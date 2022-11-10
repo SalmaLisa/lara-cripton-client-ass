@@ -12,8 +12,8 @@ const LimitedService = () => {
       .then((data) => setServices(data));
   }, []);
   return (
-    <>
-      <div className="my-24">
+    <div className=" pb-20 bg-base-200">
+      <div className="py-24">
         <h1 className="text-3xl font-semibold lg:text-5xl text-center text-blue-900">
           I Can Help You In Different Situations
         </h1>
@@ -34,7 +34,7 @@ const LimitedService = () => {
           See All
         </button>
       </Link>
-    </>
+    </div>
   );
 };
 
