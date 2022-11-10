@@ -4,20 +4,19 @@ import ReviewCard from "../Shared/ReviewCard";
 
 const DisplayReview = ({ serviceId }) => {
   const [reviews, setReviews] = useState([]);
-  const [allReview, setAllReview] = useState([]);
-  const allReviewLength = allReview.length
-  console.log(allReviewLength)
+  // const [allReview, setAllReview] = useState([]);
+  // const allReviewLength = allReview.length
 
-  useEffect(() => {
-    fetch(`https://lara-cripton-server.vercel.app/reviews`)
-      .then((res) => res.json())
-      .then((data) => setAllReview(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`https://lara-cripton-server.vercel.app/reviews`)
+  //     .then((res) => res.json())
+  //     .then((data) => setAllReview(data));
+  // }, []);
   useEffect(() => {
     fetch(`https://lara-cripton-server.vercel.app/reviews/${serviceId}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  }, [serviceId,allReviewLength]);
+  }, [serviceId]);
 
   if (reviews.length === 0) {
     return (

@@ -21,18 +21,18 @@ const AddReview = ({ service }) => {
     month < 10 ? "0" + month : month
   }/${year}`;
 
+  const postTime = date.getTime();
+
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const currentTime = `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
 
-  
   useEffect(() => {
     fetch(`https://lara-cripton-server.vercel.app/reviews/${service._id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [service._id]);
 
-  console.log(reviews)
   const handleAddReview = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -49,6 +49,7 @@ const AddReview = ({ service }) => {
       rating,
       currentDate,
       currentTime,
+      postTime,
     };
 
     fetch("https://lara-cripton-server.vercel.app/reviews", {
@@ -66,16 +67,13 @@ const AddReview = ({ service }) => {
             title: "Thanks for your review ❤ ",
           });
 
-          
-            fetch(`https://lara-cripton-server.vercel.app/reviews/${data.insertedId}`)
-              .then((res) => res.json())
-              .then((data) => {
-                const newReviewArray = [...reviews, data]
-                // setReviews(newReviewArray)
-              });
-          
+          // fetch(`https://lara-cripton-server.vercel.app/reviews/${data.insertedId}`)
+          //   .then((res) => res.json())
+          //   .then((data) => {
+          //     const newReviewArray = [...reviews, data]
+          //     // setReviews(newReviewArray)
+          //   });
         }
-        console.log(data)
         form.reset();
       })
       .catch((err) => toast.error(err.message));

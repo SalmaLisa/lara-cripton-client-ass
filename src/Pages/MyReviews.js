@@ -5,25 +5,27 @@ import { AuthContext } from "../Contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { useTitle } from "../Hooks/useTitle";
 
-
 const MyReviews = () => {
   useTitle("My Review");
   const [reviews, setReviews] = useState([]);
   const { user, logout } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`https://lara-cripton-server.vercel.app/reviews?email=${user?.email}`, {
-      headers: {
-        authorization:`Bearer ${localStorage.getItem("lara-access-token")}`
+    fetch(
+      `https://lara-cripton-server.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("lara-access-token")}`,
+        },
       }
-    })
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          return logout() 
+          return logout();
         }
-       return res.json()
+        return res.json();
       })
       .then((data) => setReviews(data))
-    .catch(err=>console.error(err))
+      .catch((err) => console.error(err));
   }, [user?.email, logout]);
   if (reviews.length === 0) {
     return (

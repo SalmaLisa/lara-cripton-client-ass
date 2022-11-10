@@ -50,8 +50,22 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        fetch("https://lara-cripton-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("lara-access-token", data.token);
+          });
         toast.success("successfully logged in");
-        console.log(result.user);
         navigate(from, { replace: true });
       })
       .catch((err) => {
