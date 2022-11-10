@@ -28,7 +28,7 @@ const Banner = () => {
         </div>
       </div>
       <div className="bg-blue-900 md:p-12 p-5">
-        <div className=" mx-auto flex items-center flex-col md:flex-row md:w-5/6">
+        <div className=" mx-auto flex items-center flex-col lg:flex-row lg:w-5/6">
           <div>
             <p className="flex items-center">
               <span className="text-blue-900 bg-white md:p-4 p-3 block md:w-16 w-12 rounded-full">
@@ -40,7 +40,7 @@ const Banner = () => {
             </p>
           </div>
           <div>
-            <div className="text-xl flex items-center mt-5 md:mt-0 ">
+            <div className="text-xl flex items-center mt-5 lg:mt-0 ">
               <input
                 type="email"
                 placeholder="Enter Your Email"
@@ -52,7 +52,7 @@ const Banner = () => {
             </div>
           </div>
         </div>
-        <div className="text-xl flex justify-end items-center md:w-5/6 mx-auto md:mt-2 my-4 ">
+        <div className="text-xl flex justify-end items-center md:w-5/6 mx-auto lg:mt-2 my-4 ">
           <input className="h-5 w-5" type="checkbox" />
           <p className="ml-3 mr-12 text-white">
             I have read and agree to the terms & conditions
