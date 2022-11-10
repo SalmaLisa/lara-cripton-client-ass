@@ -4,11 +4,11 @@
 
 
 ## Features :
-( - ) An amazing personal website for a psychologist .
-( - ) Single page Application with multiple route .
-( - ) firebase authentication with 'email and password' and 'Google'
-( - ) database is stored in mongoDB
-( - ) confidential routes are protected with JWT
+ * An amazing personal website for a psychologist .
+ * Single page Application with multiple route .
+ * firebase authentication with 'email and password' and 'Google'
+ * database is stored in mongoDB
+ * confidential routes are protected with JWT
 
 ## Functionalities :
 ( - ) the live link will take you to the root route . In that page there are some relevant section.
