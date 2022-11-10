@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+## Lara Cripton - A Life Coach and Psychologist
+# Live link : https://lara-cripton.web.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## Features :
+( - ) An amazing personal website for a psychologist .
+( - ) Single page Application with multiple route .
+( - ) firebase authentication with 'email and password' and 'Google'
+( - ) database is stored in mongoDB
+( - ) confidential routes are protected with JWT
 
-### `npm start`
+## Functionalities :
+( - ) the live link will take you to the root route . In that page there are some relevant section.
+( - ) there is a section of latest offering services. Clicking the see all button you will visit the service page where you will see all services.
+( - ) clicking the view details button you can visit details information of thar specific service . In details page you will find the review of people below relevant to the service .
+( - ) You can add review filling the review form. But you have to login first to add a review.
+( - ) To login click the sign in button at the top right corner of the page.
+( - ) if you are new to this site then go to the sign up page to register first. You will find the page link at the bottom of login form.
+( - ) after log in you will see two more pages . At My Review page you can see all of your comments at this website . You can edit you review clicking at the edit button. And you can delete any specific comment clicking the cross button.
+( - ) You can add a service at the add service page
+( - ) There is a blog page where you can know more about us
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## used framework :
+tailwind
+## used framework library :
+daisyui , mambaui , kitwind
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
