@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import { useTitle } from "../Hooks/useTitle";
 const AddService = () => {
   useTitle("Add Service");
+  const date = new Date();
+  const postTime = date.getTime();
   const handleAddService = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,6 +17,7 @@ const AddService = () => {
       price: `$${price}`,
       img,
       desc,
+      postTime
     };
     console.log(newService);
     fetch("https://lara-cripton-server.vercel.app/services", {

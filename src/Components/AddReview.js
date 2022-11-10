@@ -20,7 +20,7 @@ const AddReview = ({ service }) => {
   const currentDate = `${day < 10 ? "0" + day : day}/${
     month < 10 ? "0" + month : month
   }/${year}`;
-
+  
   const postTime = date.getTime();
 
   const hours = date.getHours();
