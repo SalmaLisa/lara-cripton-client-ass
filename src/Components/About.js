@@ -4,7 +4,7 @@ import author from "../assets/about_img.jpg";
 const About = () => {
   return (
     <div className=" ">
-      <div className="pt-24 ">
+      <div className="pt-24 pb-5 ">
         <h1 className="text-5xl font-semibold lg:text-5xl text-center text-blue-900">
         Living Full Happy Life!
         </h1>
@@ -12,7 +12,7 @@ const About = () => {
         AVAILABLE IN-PERSON OR VIA SKYPE
         </p>
       </div>
-      <div className="hero min-h-screen md:w-8/12 mx-auto">
+      <div className="hero md:w-8/12 mx-auto pb-16">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img src={author} className=" shadow-2xl" alt="" />
           <div>
