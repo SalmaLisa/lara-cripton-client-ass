@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PriceCard = ({title,price}) => {
+const PriceCard = ({title,price,setTreatment,service}) => {
   return (
     <div className=" px-4 pb-8 pt-12 mt-8 sm:px-12 md:px-8  bg-cyan-700 opacity-70 text-white  ">
             <div className="">
@@ -74,9 +74,12 @@ const PriceCard = ({title,price}) => {
                   <span>Client Satisfaction</span>
                 </li>
               </ul>
-              <button className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded mt-5 bg-pink-800 text-white hover:bg-pink-900">
+        <label
+        
+        onClick={() => setTreatment(service)}
+        htmlFor="booking-modal" className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded mt-5 bg-pink-800 text-white hover:bg-pink-900">
                 Take an Appointment
-              </button>
+              </label>
             </div>
           </div>
   );

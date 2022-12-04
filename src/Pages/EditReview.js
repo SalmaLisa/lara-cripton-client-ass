@@ -101,7 +101,7 @@ const EditReview = () => {
               <textarea
                 id="message"
                 name="message"
-                placeholder={review?.message}
+                defaultValue = {review?.message}
                 className="w-full border border-cyan-400 p-3 focus:outline-none h-36"
                 required
               ></textarea>

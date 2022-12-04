@@ -32,10 +32,10 @@ const MyReviewRow = ({ review, handleDelete }) => {
               </div>
             </span>
           </td>
-          <td className=" col-span-5  flex items-center">
+          <td className=" col-span-4  flex items-center">
             <span>{message}</span>
           </td>
-          <td className="col-span-2 flex items-center">
+          <td className="col-span-3 flex items-center">
             <span>
               <span>{email}</span>
               <span className="flex items-center space-x-2 dark:text-yellow-500">

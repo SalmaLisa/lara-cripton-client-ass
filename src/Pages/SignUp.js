@@ -26,7 +26,7 @@ const SignUp = () => {
     //create user
     createUser(email, password)
       .then((result) => {
-        updateName();
+        updateUsername(name);
         const user = result.user;
         const currentUser = {
           email: user.email,

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import Spinner from "../Components/Spinner";
 import { AuthContext } from "../Contexts/AuthProvider";
 import { useTitle } from "../Hooks/useTitle";
 import ServiceCard from "../Shared/ServiceCard";
 
+
 const Services = () => {
   const [loading,setLoading]=useState(true)
   const [services, setServices] = useState([]);
-  useEffect(() => {
-    
+ 
+  
+  useEffect(() => {  
     fetch("https://lara-cripton-server.vercel.app/services")
       .then((res) => res.json())
       .then((data) => {
@@ -38,6 +41,7 @@ const Services = () => {
           <ServiceCard key={service._id} service={service}></ServiceCard>
         ))}
       </div>
+    
     </>
   );
 };
