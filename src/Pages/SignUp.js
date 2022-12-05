@@ -8,13 +8,13 @@ import { AuthContext } from "../Contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useTitle } from "../Hooks/useTitle";
-import Spinner from "../Components/Spinner";
+import Spinner from "../Shared/Spinner";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
-  const { createUser, updateUsername, googleSignIn, loading,setLoading } =
+  const { createUser, updateUsername, googleSignIn, loading, setLoading } =
     useContext(AuthContext);
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,8 +26,25 @@ const SignUp = () => {
     //create user
     createUser(email, password)
       .then((result) => {
+        const newlyCreatedAccount = {
+          username: name,
+          userEmail: email,
+          accountStatus: "user",
+        };
         updateUsername(name);
         const user = result.user;
+        console.log(result.user);
+        fetch("http://localhost:5000/allAccounts", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newlyCreatedAccount),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+        toast.success("user created successfully");
+
         const currentUser = {
           email: user.email,
         };
@@ -43,12 +60,12 @@ const SignUp = () => {
             localStorage.setItem("lara-access-token", data.token);
           });
         toast.success("user created successfully ");
-        navigate('/home')
+        navigate("/home");
         console.log(result.user);
       })
       .catch((err) => {
         toast.error(err.message);
-        setLoading(false)
+        setLoading(false);
         console.error(err);
       });
   };
@@ -73,12 +90,12 @@ const SignUp = () => {
             localStorage.setItem("lara-access-token", data.token);
           });
         toast.success("successfully logged in");
-        navigate('/home')
+        navigate("/home");
         console.log(result.user);
       })
       .catch((err) => {
         toast.error(err.message);
-        setLoading(false)
+        setLoading(false);
         console.log(err);
       });
   };

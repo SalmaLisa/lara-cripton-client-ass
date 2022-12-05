@@ -10,7 +10,9 @@ import MyReviews from "../Pages/MyReviews";
 import ServiceDetails from "../Pages/ServiceDetails";
 import Services from "../Pages/Services";
 import SignUp from "../Pages/SignUp";
+import AdminRoute from "./AdminRoute";
 import ProtectedRoute from "./ProtectedRoute";
+import UserRoute from "./UserRoute";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +42,7 @@ export const router = createBrowserRouter([
         path: "/myReviews",
         element: (
           <ProtectedRoute>
-            <MyReviews></MyReviews>
+            <UserRoute><MyReviews></MyReviews></UserRoute>
           </ProtectedRoute>
         ),
       },
@@ -60,7 +62,7 @@ export const router = createBrowserRouter([
         path: "/addService",
         element: (
           <ProtectedRoute>
-            <AddService></AddService>
+            <AdminRoute><AddService></AddService></AdminRoute>
           </ProtectedRoute>
         ),
       },

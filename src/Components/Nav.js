@@ -6,20 +6,25 @@ import "../Styles/Nav.css";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import toast from "react-hot-toast";
+import useAdmin from "../Hooks/useAdmin";
+import useUser from "../Hooks/useUser";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout } = useContext(AuthContext)
-  
+  const { user, logout } = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isUser] = useUser(user?.email);
+  console.log(isUser)
+
   //logout
   const handleLogOut = () => {
     logout()
-      .then(() => { })
-      .catch(err => {
-        toast.error(err.message)
-        console.error(err)
-      })
-  }
+      .then(() => {})
+      .catch((err) => {
+        toast.error(err.message);
+        console.error(err);
+      });
+  };
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
@@ -60,31 +65,34 @@ const Nav = () => {
               Services
             </NavLink>
           </li>
-          {
-            user?.uid &&
+          {user?.uid && (
             <>
-              <li>
-            <NavLink
-              to='/myReviews'
-              aria-label="Product pricing"
-              title="Product pricing"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              My Reviews
-            </NavLink>
-              </li>
-              <li>
-            <NavLink
-              to='/addService'
-              aria-label="Product pricing"
-              title="Product pricing"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Add Service
-            </NavLink>
-          </li>
+              {isUser && (
+                <li>
+                  <NavLink
+                    to="/myReviews"
+                    aria-label="Product pricing"
+                    title="Product pricing"
+                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                    My Reviews
+                  </NavLink>
+                </li>
+              )}
+              {isAdmin && (
+                <li>
+                  <NavLink
+                    to="/addService"
+                    aria-label="Product pricing"
+                    title="Product pricing"
+                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  >
+                    Add Service
+                  </NavLink>
+                </li>
+              )}
             </>
-          }
+          )}
           <li>
             <NavLink
               to="/blog"
@@ -95,21 +103,20 @@ const Nav = () => {
               Blog
             </NavLink>
           </li>
-          
-          {
-            user?.uid ?
+
+          {user?.uid ? (
             <li onClick={handleLogOut}>
-            <Link
-              to="/home"
-              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
-              aria-label="Sign up"
-              title="Sign up"
-            >
-              Sign Out
-            </Link>
-              </li>
-              :
-              <li>
+              <Link
+                to="/home"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
+                aria-label="Sign up"
+                title="Sign up"
+              >
+                Sign Out
+              </Link>
+            </li>
+          ) : (
+            <li>
               <Link
                 to="/login"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
@@ -118,9 +125,8 @@ const Nav = () => {
               >
                 Sign In
               </Link>
-            </li>    
-          }
-          
+            </li>
+          )}
         </ul>
         <div className="lg:hidden z-40">
           <button
@@ -203,31 +209,34 @@ const Nav = () => {
                         Services
                       </NavLink>
                     </li>
-                    {
-            user?.uid &&
-            <>
-              <li>
-            <NavLink
-              to='/myReviews'
-              aria-label="Product pricing"
-              title="Product pricing"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              My Reviews
-            </NavLink>
-              </li>
-              <li>
-            <NavLink
-              to='/addService'
-              aria-label="Product pricing"
-              title="Product pricing"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Add Service
-            </NavLink>
-          </li>
-            </>
-          }
+                    {user?.uid && (
+                      <>
+                        {isUser && (
+                          <li>
+                            <NavLink
+                              to="/myReviews"
+                              aria-label="Product pricing"
+                              title="Product pricing"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              My Reviews
+                            </NavLink>
+                          </li>
+                        )}
+                        {isAdmin && (
+                          <li>
+                            <NavLink
+                              to="/addService"
+                              aria-label="Product pricing"
+                              title="Product pricing"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              Add Service
+                            </NavLink>
+                          </li>
+                        )}
+                      </>
+                    )}
                     <li>
                       <NavLink
                         to="/blog"
@@ -238,30 +247,29 @@ const Nav = () => {
                         Blog
                       </NavLink>
                     </li>
-                    {
-            user?.uid ?
-            <li onClick={handleLogOut}>
-            <Link
-              to="/home"
-              className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
-              aria-label="Sign up"
-              title="Sign up"
-            >
-              Sign Out
-            </Link>
-              </li>
-              :
-              <li>
-              <Link
-                to="/login"
-                className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign In
-              </Link>
-            </li>    
-          }
+                    {user?.uid ? (
+                      <li onClick={handleLogOut}>
+                        <Link
+                          to="/home"
+                          className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Sign Out
+                        </Link>
+                      </li>
+                    ) : (
+                      <li>
+                        <Link
+                          to="/login"
+                          className="inline-flex items-center justify-center h-12 w-full px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gradient-to-bl from-pink-400  via-pink-600 to-pink-400 focus:shadow-outline focus:outline-none"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Sign In
+                        </Link>
+                      </li>
+                    )}
                   </ul>
                 </nav>
               </div>

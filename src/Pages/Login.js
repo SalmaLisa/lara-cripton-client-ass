@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useTitle } from "../Hooks/useTitle";
-import Spinner from "../Components/Spinner";
+import Spinner from "../Shared/Spinner";
 
 const Login = () => {
   useTitle("Login");
