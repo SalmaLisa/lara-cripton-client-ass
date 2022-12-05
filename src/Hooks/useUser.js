@@ -6,7 +6,7 @@ const useUser = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`)
+      fetch(`https://lara-cripton-server.vercel.app/user/${email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
